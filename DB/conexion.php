@@ -1,8 +1,8 @@
 <?php
-$nombreServidor = "127.0.0.1:3306";
+$nombreServidor = "127.0.0.1:3307";
 $username = "root";
 $password = "";
-$dbnombre = "fabrica";
+$dbnombre = "ferreteria";
 
 //crear una variable para generar la conexion
 $conn = mysqli_connect($nombreServidor,$username,$password,$dbnombre);

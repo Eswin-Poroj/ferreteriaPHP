@@ -23,13 +23,13 @@
           <a class="nav-link active" href="index.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="crear.php">Agregar Productos</a>
+          <a class="nav-link active" href="agregarProductos.php">Agregar Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="addCategoria.php">Agregar Categoria</a>
+          <a class="nav-link active" href="agregarCategoriaProductos.php">Agregar Categoria</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="leer.php">Listar Productos</a>
+          <a class="nav-link active" href="listarProductos.php">Listar Productos</a>
         </li>
       </ul>
     </div>

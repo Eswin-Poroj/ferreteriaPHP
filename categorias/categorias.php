@@ -1,10 +1,10 @@
 <?php
+$idGET = $_GET['id'];
+  function leerDatos($idTipoProducto){
+  include '../DB/conexion.php';
+  $sql = "SELECT p.idProducto, p.nombreProducto, p.precioProducto, tp.nombreTipoProducto AS tipo FROM producto p, tipoproducto tp WHERE tp.idTipoProducto = p.idTipoProducto AND p.idTipoProducto = '$idTipoProducto'";
 
-  function leerDatos(){
-  include 'C:\xampp\htdocs\CRUD\23julio\conexion.php';
-  $sql = "SELECT p.idProducto, p.nombreProducto, p.precioProducto, tp.nombreTipoProducto AS tipo FROM producto p, tipoproducto tp WHERE tp.idTipoProducto = p.idTipoProducto AND p.idTipoProducto = '4'";
-
-  return $resultado = $conn->query($sql);
+  return $conn->query($sql);
   }
 
   
@@ -26,7 +26,7 @@
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top">
+        <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top" alt="logo">
         Ferreteria Tecún Úman
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@
             <a class="nav-link active" aria-current="page" onclick="location.href='../index.php';" >Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" onclick="location.href='../crear.php';" >Agregar Productos</a>
+            <a class="nav-link active" onclick="location.href='../agregarProductos.php';" >Agregar Productos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" onclick="location.href='../nosotros.php'">Sobre Nosotros</a>
@@ -48,7 +48,16 @@
     </div>
   </nav>
 
-  <h1 class="text-center mt-5">Láminas</h1>
+  <?php
+  include '../DB/conexion.php';
+  $sql = "SELECT `nombreTipoProducto`FROM `tipoproducto` WHERE idTipoProducto = '$idGET'";
+  $resultado =$conn->query($sql);
+  while ($row2 = $resultado->fetch_assoc())
+  {?>
+
+      <h1 class='text-center mt-5'> <?php echo $row2['nombreTipoProducto'];?> </h1>
+
+  <?php } ?>
 
   <div class="container mt-5">
     <table class="table">
@@ -63,9 +72,10 @@
       </thead>
       <tbody class="table-group-divider">
         <?php
-        include 'C:\xampp\htdocs\CRUD\23julio\conexion.php';
+        include '../DB/conexion.php';
         try {
-          $resultado = leerDatos();
+
+          $resultado = leerDatos($idGET);
         $num = 1;
         while ($row = $resultado->fetch_assoc()) { 
         ?>
@@ -75,14 +85,15 @@
             <td><?php echo $row['precioProducto'] ?></td>
             <td><?php echo $row['tipo'] ?></td>
             <td>
-              <a class="btn btn-primary" role="button" href="actualizarNuevo.php?id=<?php echo $row['idProducto'] ?>">Actualizar</a>
-              <a class="btn btn-primary" role="button" href="eliminar.php?id=<?php echo $row['idProducto'] ?>">Eliminar</a>
-              
+              <a class="btn btn-primary" role="button" href="../actualizarProductos.php?id=<?php echo $row['idProducto'] ?>">Actualizar</a>
+              <a class="btn btn-primary" role="button" href="../eliminarProductos.php?id=<?php echo $row['idProducto'] ?>">Eliminar</a>
             </td>
           </tr>
       </tbody>
         <?php $num++; } } catch (Exception $th) {
-          echo "xd";
+          echo "<script>";
+          echo "alert('Error al Cargar Datos')";
+          echo "</script>";
         }?>
     </table 
   </div>

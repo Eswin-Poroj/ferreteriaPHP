@@ -1,11 +1,11 @@
 <?php
-include "conexion.php";
+include 'DB/conexion.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $newCategoria = $_POST['newCategoria'];
 
-    $sql = "INSERT INTO tipoproducto(nombreTipoProducto) VALUES ('$newCategoria')";
+    $sql = "INSERT INTO tipoproducto(nombreTipoProducto, estado)VALUES('$newCategoria',1)";
 
-    if ($conn->query($sql) == true) {
+    if ($conn->query($sql)) {
         $mensaje = "Categoria Agragada Exitosamente";
 
         echo "<script>";
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top">
+                <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top" alt="logoFerreteria">
                 Ferreteria Tecún Úman
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,13 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="crear.php">Agregar Productos</a>
+                        <a class="nav-link active" href="agregarProductos.php">Agregar Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="leer.php">Listar Productos</a>
+                        <a class="nav-link active" href="listarProductos.php">Listar Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Sobre Nosotros</a>
+                        <a class="nav-link active" href="nosotros.php">Sobre Nosotros</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 
     <div class="container mt-5">
-        <form class="form-floating" action="addCategoria.php" method="post">
+        <form class="form-floating" action="agregarCategoriaProductos.php" method="post">
 
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="newCategoria"></textarea>

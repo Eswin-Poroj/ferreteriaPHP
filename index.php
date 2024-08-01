@@ -11,7 +11,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
   <a class="navbar-brand" href="#">
-      <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top">
+      <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top" alt="logo">
       Ferreteria Tecún Úman
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,13 +20,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="crear.php">Agregar Productos</a>
+          <a class="nav-link active" href="agregarProductos.php">Agregar Productos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="addCategoria.php">Agregar Categoria</a>
+          <a class="nav-link active" href="agregarCategoriaProductos.php">Agregar Categoria</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="leer.php">Listar Productos</a>
+          <a class="nav-link active" href="listarProductos.php">Listar Productos</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" href="nosotros.php">Sobre Nosotros</a>
@@ -63,7 +63,7 @@
 <div class="container mt-5">
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100" onclick="location.href='categorias/categorias.php?id=1';">
       <img src="https://www.emb.cl/construccion/pixnoti/2018/20180723p7.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Cementos</h5>
@@ -72,7 +72,7 @@
     </div>
   </div>
   <div class="col">
-    <div class="card h-100">
+    <div class="card h-100" onclick="location.href='categorias/categorias.php?id=5';">
       <img src="https://images.pexels.com/photos/19825178/pexels-photo-19825178/free-photo-of-metal-monitor-mostrar-exhibicion.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Hierros</h5>
@@ -81,24 +81,34 @@
     </div>
   </div>
   <div class="col">
-    <div class="card h-100">
+    <div onclick="location.href='categorias/categorias.php?id=7';" class="card h-100">
       <img src="https://laminadosindustriales.com.mx/wp-content/uploads/2018/08/lamina-galvanizada-ag-20-compressor.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Laminas</h5>
-        <a href="categorias/laminas.php" class="link-underline-light"><p class="card-text text-black" >This is a longer card with supporting text below as a natural lead-in to additional content.</p></a>
+        <p class="card-text text-black" >This is a longer card with supporting text below as a natural lead-in to additional content.</p>
       </div>
     </div>
   </div>
   <div class="col">
-    <div class="card h-100">
+    <div onclick="location.href='categorias/categorias.php?id=2';" class="card h-100">
       <img src="https://st3.depositphotos.com/1177973/14617/i/450/depositphotos_146177691-stock-photo-tools-on-wooden-background.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Electricidad</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          <p class="card-text text-black" >This is a longer card with supporting text below as a natural lead-in to additional content.</p>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+<div class="w-auto p-3 mt-5 text-bg-dark">
+        <p class="text-center fw-medium fs-4">Ferreteria Tecún Úman 2024</p>
+        <img class="me-2" width="35px" height="35px" onclick="location.href='https://fb.com/estuardo.poroj.37';" src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Facebook_logo_%28square%29.png" alt="logoFacebook">
+        <img class="me-2" width="35px" height="35px" onclick="location.href='https://instagram.com/eswin_poroj1';" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1000px-Instagram_logo_2022.svg.png" alt="logoInstagram">
+        <img class="me-2" width="35px" height="35px"  onclick="location.href='https://github.com/Eswin-Poroj';" src="https://cdn.worldvectorlogo.com/logos/github-icon-2.svg" alt="logoGitHub">
+
+
+
 </div>
 
 </body>

@@ -1,34 +1,26 @@
 <?php
 
-include 'conexion.php';
+include 'DB/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombre = $_POST['nombre'];
     $precio = $_POST['precio'];
     $tipo_id = $_POST['tipo_id'];
-    $estado = 1;
+    $sql = "INSERT INTO producto(nombreProducto, precioProducto, idTipoProducto, estado) VALUES ('$nombre','$precio','$tipo_id',1)";
+    $alerta = false;
+    
 
-    $sql ="UPDATE producto SET nombreProducto='$nombre', precioProducto='$precio', idTipoProducto = '$tipo_id', estado = '$estado' WHERE idProducto = '$id'";
-    $resultado = $conn->query($sql);
-
-    if ($conn->query($sql)==true) {
-        $mensaje ="Producto Actualizado Exitosamente";
+    if($conn->query($sql) == true){
+        $mensaje ="Producto Agregado Exitosamente"; //ESTA ES LA ALERTA
 
         echo "<script>";
         echo "alert('$mensaje');";
         echo "window.location.href = 'index.php';";
-        echo "</script>";
+        echo "</script>";   
+        
     } else {
-        echo "Error".$sql."<br>".$conn->error;  
+        echo "ERRO! ".$sql."<br>".$conn->error;
     }
-} else {
-    $id=$_GET['id'];
-
-    $sql = "SELECT * FROM producto where idProducto = '$id'";
-    $resultado = $conn->query($sql);
-    $producto = $resultado->fetch_assoc();
-    $sql = "SELECT * FROM `tipoproducto`";
-    $tipos = $conn->query($sql);
 }
     
     
@@ -41,14 +33,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar</title>
+    <title>Agregar Producto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    
   <a class="navbar-brand" href="#">
       <img src="https://image.freepik.com/vector-gratis/logotipo-supermercado_23-2148459011.jpg" width="30" height="24" class="d-inline-block align-text-top">
       Ferreteria Tecún Úman
@@ -62,44 +53,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <a class="nav-link active" aria-current="page" href="index.php">Inicio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="leer.php">Listar Productos</a>
+          <a class="nav-link active" aria-current="page" href="agregarCategoriaProductos.php">Agregar Categoria</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="#">Sobre Nosotros</a>
+          <a class="nav-link active" href="listarProductos.php">Listar Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="nosotros.php">Sobre Nosotros</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<div class="container mt-5">
-
-
-    <form action="actualizarNuevo.php" method="post" class="form-floating">
+   <div class="container mt-5">
+   <form class="form-floating" action="agregarProductos.php" method="post">
+                
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingTextarea" name="nombre" value="<?php echo $producto['nombreProducto'] ?>">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="nombre"></textarea>
                     <label for="floatingTextarea">Nombre</label>
                 </div>
                 <br>
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingTextarea" name="precio" value="<?php echo $producto['precioProducto'] ?>">
+                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="precio"></textarea>
                     <label for="floatingTextarea">Precio</label>
                 </div>
                 <br>
                 <select class="form-select" aria-label="Default select example" name="tipo_id" id="tipo_id">
+                    <option selected>Tipos de Productos</option>
                     <?php
-                        include 'conexion.php';
+                        include 'DB/conexion.php';
                         while ($row2 = $resultado2->fetch_assoc()) 
                         {?>
                             <option value="<?php echo $row2['idTipoProducto'];?>"> <?php echo $row2['nombreTipoProducto'];?> </option>
                     <?php } ?>
                 </select>
-
-                
                 
                 <br>
                 <input class="btn btn-primary" type="submit" value="Agregar Producto">
-    </form>
-    </div>
+                
+            </form>
+   </div>
 </body>
 </html>
